@@ -33,13 +33,16 @@
 环境准备
 1.下载Termux链接：https://github.com/termux/termux-app/releases
 
-2. 安装 Python 3（建议 3.6 以上）代码:pkg install python -y
+2. 安装 Python 3（建议 3.6 以上）:· Termux (Android)代码：pkg install python -y
    
 3. 安装 LZ4 库：
    · Termux (Android)代码：pkg install lz4
+   
    · Linux：sudo apt install liblz4-dev（或使用包管理器安装）
+   
    · Windows：下载预编译的 LZ4 DLL（如从 lz4-win64 获取 msys-lz4-1.dll），并放在脚本同一目录或系统路径中。然后修改脚本中的 LZ4_LIB 变量为 DLL 的绝对路径（例如 'C:/path/to/msys-lz4-1.dll'）。
-4. 保存脚本：将代码保存为 .py 文件，例如 sky_mesh_to_obj.py。
+   
+5. 保存脚本：将代码保存为 .py 文件，例如 sky_mesh_to_obj.py。
 
 命令行模式
 
