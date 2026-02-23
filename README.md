@@ -33,11 +33,18 @@
 环境准备
 
 1. 安装 Python 3（建议 3.6 以上）。
-2. 安装 LZ4 库：
+   ```安装
+#python:
+pkg install python -y
+```
+3. 安装 LZ4 库：
    · Termux (Android)：pkg install lz4
+```#安装Lz4:
+pkg install lz4 -y
+```
    · Linux：sudo apt install liblz4-dev（或使用包管理器安装）
    · Windows：下载预编译的 LZ4 DLL（如从 lz4-win64 获取 msys-lz4-1.dll），并放在脚本同一目录或系统路径中。然后修改脚本中的 LZ4_LIB 变量为 DLL 的绝对路径（例如 'C:/path/to/msys-lz4-1.dll'）。
-3. 保存脚本：将代码保存为 .py 文件，例如 sky_mesh_to_obj.py。
+4. 保存脚本：将代码保存为 .py 文件，例如 sky_mesh_to_obj.py。
 
 命令行模式
 
