@@ -32,16 +32,19 @@
 
 环境准备
 1.下载Termux链接：https://github.com/termux/termux-app/releases
+
 2. 安装 Python 3（建议 3.6 以上）。
    
-   ```安装
+   ```
+   安装
 #python:
 pkg install python -y
 ```
 3. 安装 LZ4 库：
    · Termux (Android)：pkg install lz4
 
-```#安装Lz4:
+```
+#安装Lz4:
 pkg install lz4 -y
 ```
    · Linux：sudo apt install liblz4-dev（或使用包管理器安装）
