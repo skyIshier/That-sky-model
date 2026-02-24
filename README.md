@@ -97,7 +97,9 @@ python sky_mesh_to_obj.py
    · 自动搜索索引区域（16 位或 32 位），确保索引值小于顶点数。
 4. 智能识别：读取 MeshDefs.lua 获得每个模型的编译参数，或根据文件名关键词判断是否为压缩模型。解析失败时自动尝试另一种解析器。
 5. OBJ 导出：按标准格式写入顶点、UV 和面索引。
-贴图提取:https://github.com/bluescan/tacentview
+
+贴图提取:
+https://github.com/bluescan/tacentview
 
 更新日志
 
