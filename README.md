@@ -1,3 +1,145 @@
+Model extraction.py
+
+A powerful Python script for batch extracting and converting 3D models from .mesh files of the game Sky: Children of the Light into the universal OBJ format. It combines multiple parsing strategies (heuristic, compressed, ZipPos) to handle a wide variety of model files, including those with special compilation flags like StripAnim, CompOcc, ZipPos, ZipUvs, StripNorm, and more.
+
+Features
+
+· Multi‑strategy parsing
+    Automatically tries different offset combinations and layout versions to support both old and new .mesh files.
+· Special‑flag support
+    Dedicated handling for ZipPos models (8‑bit quantized vertices) with coordinate normalization.
+· Fallback mechanism
+    If one parser fails, the script automatically retries with the next available method.
+· Degenerate face filtering
+    OBJ export optionally removes faces with duplicate vertex indices to clean up the mesh.
+· Interactive file selection
+    In interactive mode, you can select multiple files using numbers, ranges (e.g. 1-5), comma/space separated lists, or all.
+· Custom output directory
+    Specify where the OBJ files should be saved (defaults to current directory).
+· Command‑line batch mode
+    Process all .mesh files at once with a simple command.
+
+Dependencies
+
+· Python 3.6+
+· LZ4 library – required for decompressing the compressed data inside .mesh files.
+
+Installation
+
+1. Install Python (if not already present) from python.org or using your system’s package manager.
+2. Install the LZ4 library
+   · On Termux (Android): pkg install lz4
+   · On Linux: sudo apt install liblz4-dev (or equivalent for your distribution)
+   · On Windows: Download a precompiled LZ4 DLL (e.g. from the lz4-win64 release) and place it in a known path. Then edit the script to point LZ4_LIB to that DLL (e.g. 'C:/path/to/msys-lz4-1.dll').
+3. Save the script as Model extraction.py (or any name you prefer).
+
+Usage
+
+Command‑line mode (batch processing)
+
+```bash
+python "Model extraction.py" file1.mesh file2.mesh -o ./output_folder
+```
+
+· Supports wildcards (e.g. *.mesh).
+· If -o is omitted, OBJ files are saved in the current directory.
+
+Interactive mode
+
+Run the script without arguments:
+
+```bash
+python "Model extraction.py"
+```
+
+You will see a list of all .mesh files in the current directory:
+
+```
+找到以下 .mesh 文件：
+1. model1.mesh
+2. model2.mesh
+3. model3.mesh
+
+请输入要转换的文件序号（支持格式：1 2 3、1-5、1,2,3 或 all）
+或输入 q 退出程序。
+选择:
+```
+
+Enter your selection, e.g. 1 3 5, 1-5, 1,3,5, or all. Then specify the output directory (press Enter to use the current directory). The script will process each selected file and export OBJ files with the same base name.
+
+How It Works
+
+1. File identification
+      The script first reads the first few bytes of the file. If the header is \x1F\x00\x00\x00, it tries the fmt_mesh parser (originally from a Noesis plugin). This parser handles both regular and ZipPos models, including bone/skeleton data (which is skipped for geometry extraction).
+2. Heuristic parsing
+      If the file does not have the fmt_mesh header, the script attempts to decompress data using several candidate offset sets for compressed size, uncompressed size, and data start. It then looks for vertex/total counts at common offsets (e.g. 0x74, 0x78) and reads vertex, UV, and index buffers according to the “classic” layout.
+3. Compressed‑model parsing
+      A dedicated parser tries different offset combinations (both 4‑byte and 2‑byte sizes) to locate the LZ4 compressed block. After decompression it either:
+   · Uses the new‑version layout (if detected from header fields at 0x30–0x40).
+   · Uses the old‑version layout (quantized 16‑bit vertices with min/range values).
+   · If the filename contains ZipPos, it enters a special branch that reads 8‑bit quantised vertices from the end of the decompressed buffer and normalises them to the [-1, 1] range.
+4. Index searching
+      After vertices and UVs are obtained, the script scans the remaining data for a contiguous block of 16‑bit or 32‑bit indices that form valid triangles (all indices less than the vertex count). It then reads the face data.
+5. OBJ export
+      Finally, the script writes an OBJ file containing:
+   · v lines for vertices
+   · vt lines for UV coordinates
+   · f lines for faces (with optional degenerate‑face filtering).
+
+Advantages
+
+· High success rate – Processes over 99% of all .mesh files from the game (tested on 5906 files).
+· No Blender required – Pure Python command‑line tool, ideal for batch processing and automation.
+· Cross‑platform – Runs on any system where Python and LZ4 are available (Termux, Linux, Windows, macOS).
+· User‑friendly – Interactive selection and clear debug output.
+· Extensible – Open source; you can easily add new offset candidates or parsing branches as the file format evolves.
+
+Limitations
+
+· Special‑flagged files – A few files (mostly .animpack.mesh or those with very complex flags) may still fail. These often require dedicated tools like Noesis with the fmt_mesh.py plugin.
+· OBJ only – Output is limited to the OBJ format; no support for FBX, glTF, etc.
+· No textures – Only geometry and UV coordinates are extracted; textures (stored as .ktx) must be converted separately using tools like PVRTextTool.
+· LZ4 dependency – Users on Windows must manually supply the LZ4 DLL.
+
+Changelog
+
+v2.5 (2026-02-24)
+
+· Integrated fmt_mesh parser for better handling of ZipPos and animated models.
+· Added coordinate normalisation for 8‑bit quantised vertices in ZipPos branch.
+· Improved fallback logic and degenerate‑face filtering.
+
+v2.0 (2026-02-24)
+
+· Introduced compressed‑model parser with version detection.
+· Added automatic retry with compressed parser when heuristic fails.
+
+v1.0 (2026-02-23)
+
+· Initial heuristic parser based on longbyte1’s original script.
+
+Acknowledgements
+
+This script builds upon the invaluable work of the reverse‑engineering community, especially:
+
+· longbyte1 – for the original Python snippet and the SkyEngineTools repository.
+· DancingTwix – for the initial forum guide and continuous testing.
+· Durik256 – for the fmt_mesh.py Noesis plugin, which inspired the advanced parsing logic.
+· cobrakyle / sungaila – for cracking the first compression issues.
+· All contributors to the VG Resource forum thread and the Sky Browser project.
+
+---
+
+If you encounter any issues or have suggestions, please open an issue on GitHub or join the discussion on the Discord server.
+
+
+
+
+
+
+
+
+
 《光遇》.mesh 批量转 OBJ 工具
 
 简介
