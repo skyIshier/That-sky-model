@@ -81,6 +81,11 @@ https://archive.vg-resource.com/thread-39211.html
 3.脚本fmt_mesh.py(SkyEngineTools)
 https://github.com/oldmud0/SkyEngineTools/tree/master
 
+4Termux
+https://github.com/termux/termux-app#github
+
+5光遇历史版本下载
+http://skyversion.ct.ws/
 
 联络方式
 
