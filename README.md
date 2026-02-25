@@ -15,6 +15,7 @@ Model Extracting.py是一个强大的Python脚本，旨在从手机游戏Sky:Chi
 ·Python 3.6+（标准库：ctypes、struct、io、os、sys、Globe、argparse、re） ·LZ4库-用于解压缩。 使用以下方式安装： ·Termux:pkg install lz4 Linux:sudo apt install liblz4-dev（或您的发行版的等效程序） ·Windows：下载一个预编译的LZ4 DLL（例如msys-lz4-1.dll），并将其放置在脚本所在的目录中；然后在剧本。
 
 不需要额外的Python包。
+可以看使用方法.md安装
 
 安装
 
@@ -75,6 +76,7 @@ longbyte1–初始解压缩和布局研究。 ·DancingTwix–原创论坛帖子
 相关链接
 1.天空浏览器https://github.com/mablay/sky-browser/tree/main
 https://mablay.github.io/sky-browser/
+
 2.一篇帖子
 https://archive.vg-resource.com/thread-39211.html
 
