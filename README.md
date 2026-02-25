@@ -89,6 +89,9 @@ https://github.com/termux/termux-app#github
 5光遇历史版本下载
 http://skyversion.ct.ws/
 
+6obj文件打开器下载
+https://app.3dmgame.com/android/448799.html
+
 联络方式
 
 如有问题、错误报告或建议，请发送电子邮件至： 📧 3787533101@qq.com
