@@ -27,7 +27,7 @@ import re
 import time
 
 # ==================== 全局配置 ====================
-DEBUG = True          # 调试输出，可设为 False 关闭
+DEBUG = False          # 调试输出，False 关闭 True开启
 LZ4_LIB = 'liblz4.so' # LZ4 库名称（Termux 中为 liblz4.so）
 
 # ==================== LZ4 库加载 ====================
