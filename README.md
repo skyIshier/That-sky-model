@@ -1,4 +1,4 @@
-模型提取.py–天空：光的子对象mesh到OBJ转换器
+模型提取.py–天空：光之子对象mesh到OBJ转换器
 
 概述
 
@@ -91,6 +91,9 @@ http://skyversion.ct.ws/
 
 6obj文件打开器下载
 https://app.3dmgame.com/android/448799.html
+
+7.十二的网址整合
+https://shier.ct.ws/
 
 联络方式
 
